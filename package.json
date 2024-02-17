@@ -1,0 +1,50 @@
+{
+  "name": "travel-ui-tailwind",
+  "version": "0.1.0",
+  "private": false,
+  "license": "MIT",
+  "author": {
+    "name": "Daniel Sousa",
+    "url": "https://github.com/tutods"
+  },
+  "engineStrict": true,
+  "engines": {
+    "npm": "please-use-yarn"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.6",
+    "@types/google.maps": "^3.55.3",
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1"
+  },
+  "devDependencies": {
+    "@tutods/eslint-config": "^1.4.0",
+    "@tutods/prettier-config": "^0.2.0",
+    "@types/node": "^20.4.5",
+    "@types/react": "^18.2.17",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.46.0",
+    "eslint-config-next": "^13.4.12",
+    "eslint-config-prettier": "^8.9.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-tailwindcss": "^3.13.0",
+    "postcss": "^8.4.27",
+    "postcss-import": "^15.1.0",
+    "prettier": "^3.0.0",
+    "sass": "^1.64.1",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.1.6"
+  }
+}

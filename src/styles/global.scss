@@ -1,0 +1,26 @@
+@import "partials/tailwind";
+
+@import "partials/fonts";
+@import "partials/reset";
+
+// Custom classes
+.icon {
+	@apply text-2xl cursor-pointer text-brand-dark;
+}
+
+.bg-image-zoom {
+	@apply overflow-hidden bg-cover cursor-pointer relative rounded-md bg-no-repeat w-full shadow shadow-black/20;
+
+	&::before {
+		@apply content-[''] absolute inset-0 bg-cover origin-center bg-gray-900/75 bg-blend-overlay;
+
+		background-image: inherit;
+		transition: transform 0.3s ease-in-out;
+	}
+
+	&:hover {
+		&::before {
+			@apply scale-110;
+		}
+	}
+}

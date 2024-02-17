@@ -1,0 +1,41 @@
+* {
+	scroll-behavior: smooth;
+}
+
+@layer base {
+	body {
+		@apply font-sans;
+	}
+
+	li {
+		@apply p-4;
+	}
+
+	h1 {
+		@apply text-3xl font-bold;
+
+		@screen md {
+			@apply text-4xl;
+		}
+	}
+
+	h2 {
+		@apply text-2xl font-bold;
+	}
+
+	h3 {
+		@apply text-lg font-bold;
+
+		@screen md {
+			@apply text-xl;
+		}
+	}
+
+	button {
+		@apply cursor-pointer p-3 border bg-gradient-to-r from-brand-dark to-brand-light text-white rounded-md;
+
+		&[type=submit] {
+			@apply cursor-pointer p-3 border bg-gradient-to-r from-brand-dark to-brand-light text-white rounded-md;
+		}
+	}
+}

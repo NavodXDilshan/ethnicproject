@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "@tutods/eslint-config/next",
+    "@tutods/eslint-config/prettier",
+    "@tutods/eslint-config/sort-imports",
+    "@tutods/eslint-config/tailwind"
+  ]
+}
