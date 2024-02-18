@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import Link from 'next/link';
 import { AiOutlineClose } from 'react-icons/ai';
 import { BiSearch } from 'react-icons/bi';
 import { BsPerson } from 'react-icons/bs';
 import { FaFacebook, FaInstagram, FaPinterest, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { HiOutlineMenuAlt4 } from 'react-icons/hi';
+import Link from 'next/link';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);

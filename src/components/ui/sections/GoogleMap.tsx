@@ -1,19 +1,17 @@
-'use client';
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 
 export default function GoogleMap() {
-  const mapRef = React.useRef<HTMLDivElement>(null);
+  const mapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const initializeMap = async () => {
       const loader = new Loader({
         apiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY as string,
-        version: 'quartely',
+        version: 'quarterly',
       });
 
-      const { Map } = await loader.importLibrary('maps');
+      const google: any = await loader.load();
 
       // Retrieve user's current location
       navigator.geolocation.getCurrentPosition(
@@ -29,11 +27,11 @@ export default function GoogleMap() {
             mapId: 'NEXT_MAPS_TUTS',
           };
 
-          const map = new Map(mapRef.current as HTMLDivElement, options);
+          const map = new google.maps.Map(mapRef.current!, options);
 
           // Add a marker for the current location
-          const marker = new google.maps.Marker({
-            map: map,
+          new google.maps.Marker({
+            map,
             position: locationInMap,
           });
         },
