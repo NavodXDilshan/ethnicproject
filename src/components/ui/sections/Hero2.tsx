@@ -8,7 +8,7 @@ const HeroSection = () => (
       muted
       className="h-full w-full object-cover"
       controls={false}
-      src="/assets/media/videos/beach.mp4"
+      src="/assets/media/videos/sigiriya.mp4"
     />
     <div className="absolute left-0 top-0 h-full w-full bg-gray-900/50" />
 
