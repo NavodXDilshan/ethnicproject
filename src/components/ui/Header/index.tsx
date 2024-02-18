@@ -12,23 +12,23 @@ const Header = () => {
   const handleMobileMenu = () => setIsOpen(prev => !prev);
 
   return (
+    
     <header className="absolute top-0 z-10 flex h-20 w-full items-center justify-center px-4 text-white lg:px-0">
       <section className="container mx-auto flex items-center justify-between gap-4">
         <span className="font-roboto-condensed text-3xl font-bold uppercase md:text-4xl">
           VISIT SL.
         </span>
+        <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+        <script src="https://mediafiles.botpress.cloud/3c6f068d-a1fe-4358-b107-4990ee37b40c/webchat/config.js" defer></script>  
 
-        <nav className="hidden items-center gap-1 md:flex md:gap-6">
+
+        <nav className="hidden items-center gap-15 md:flex md:gap-8">
           <Link href="/" key="home"><span>Home</span></Link>
           <Link href="/travel" key="travel"><span>Travel</span></Link>
           <Link href="/book" key="book"><span>Book</span></Link>
         </nav>
-
-        <div className="hidden items-center gap-2 md:flex">
-          <BiSearch size={20} />
-          <BsPerson size={20} />
-        </div>
-
+      
+   
         <div className="md:hidden">
           <HiOutlineMenuAlt4 className="cursor-pointer" onClick={handleMobileMenu} size={20} />
         </div>
@@ -52,11 +52,6 @@ const Header = () => {
         <Link href="/travel" key="travel"><span className="border-b border-b-slate-500 p-2">Travel</span></Link>
         <Link href="/book" key="book"><span className="border-b border-b-slate-500 p-2">Book</span></Link>
         </nav>
-
-        <section className="flex flex-col gap-4" key="search-account-section">
-          <button key="search-button">Search</button>
-          <button key="account-button">Account</button>
-        </section>
 
         <section className="flex items-center justify-center gap-6">
           <FaFacebook className="icon" />

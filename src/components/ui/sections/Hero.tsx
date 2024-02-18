@@ -1,5 +1,6 @@
 import { AiOutlineSearch } from 'react-icons/ai';
 
+
 const HeroSection = () => (
   <section className="relative h-screen w-full">
     <video
