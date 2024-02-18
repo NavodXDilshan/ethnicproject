@@ -10,8 +10,11 @@ const Footer = () => (
         <FaPinterest className="icon" />
         <FaYoutube className="icon" />
       </section>
+      <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+      <script src="https://mediafiles.botpress.cloud/3c6f068d-a1fe-4358-b107-4990ee37b40c/webchat/config.js" defer></script>  
+
     </div>
   </footer>
 );
 
-export { Footer };
+export default Footer;

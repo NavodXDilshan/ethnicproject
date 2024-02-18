@@ -44,5 +44,5 @@ export default function GoogleMap() {
     initializeMap();
   }, []);
 
-  return <div className="h-[700px]" ref={mapRef} />;
+  return <div className="h-[700px]" ref={mapRef}></div>;
 }

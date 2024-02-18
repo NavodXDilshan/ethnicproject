@@ -1,6 +1,7 @@
+import React from 'react';
 import type { NextPage } from 'next';
 
-import { Footer } from 'components/ui/Footer';
+import Footer from 'components/ui/Footer';
 import { Header } from 'components/ui/Header';
 import { CarouselSection } from 'components/ui/sections/Carousel';
 import { DestinationsSection } from 'components/ui/sections/Destination';
@@ -13,7 +14,6 @@ const Home: NextPage = () => {
       <Header />
       <HeroSection />
       <DestinationsSection />
-     
       <SelectionSection />
       <CarouselSection />
       <Footer />
