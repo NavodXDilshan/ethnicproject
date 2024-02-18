@@ -48,11 +48,9 @@ const Header = () => {
         </section>
 
         <nav className="flex flex-col gap-4 text-xl">
-          <span className="border-b border-b-slate-500 p-2">Home</span>
-          <span className="border-b border-b-slate-500 p-2">Destinations</span>
-          <span className="border-b border-b-slate-500 p-2">Travel</span>
-          <span className="border-b border-b-slate-500 p-2">View</span>
-          <span className="border-b border-b-slate-500 p-2">Book</span>
+        <Link href="/" key="home"><span className="border-b border-b-slate-500 p-2">Home</span></Link>
+        <Link href="/travel" key="travel"><span className="border-b border-b-slate-500 p-2">Travel</span></Link>
+        <Link href="/book" key="book"><span className="border-b border-b-slate-500 p-2">Book</span></Link>
         </nav>
 
         <section className="flex flex-col gap-4" key="search-account-section">
