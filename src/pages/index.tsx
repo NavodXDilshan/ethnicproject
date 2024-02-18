@@ -6,18 +6,20 @@ import { CarouselSection } from 'components/ui/sections/Carousel';
 import { DestinationsSection } from 'components/ui/sections/Destination';
 import { HeroSection } from 'components/ui/sections/Hero';
 import { RatesSection } from 'components/ui/sections/Rates';
-import { BookSelection } from 'components/ui/sections/Book';
+import { SelectionSection } from 'components/ui/sections/Selection';
 
-const Home: NextPage = () => {
+const index: NextPage = () => {
   return (
     <>
       <Header />
       <HeroSection />
-      <BookSelection />
-    
+      <DestinationsSection />
+     
+      <SelectionSection />
+      <CarouselSection />
       <Footer />
     </>
   );
 };
 
-export default Home;
+export default index;

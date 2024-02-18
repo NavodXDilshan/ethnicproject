@@ -20,11 +20,12 @@ const Header = () => {
         <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
         <script src="https://mediafiles.botpress.cloud/3c6f068d-a1fe-4358-b107-4990ee37b40c/webchat/config.js" defer></script>    
 
-        <nav className="hidden items-center gap-3 md:flex md:gap-6">
+        <nav className="hidden items-center gap-1 md:flex md:gap-6">
           
+          <Link href="/index"></Link>
           <Link href="home"><span>Home</span></Link>
-          <Link href="travel"><span>Travel</span></Link>
-          <Link href="book"><span>Book</span></Link>
+          <Link href="/travel"><span>Travel</span></Link>
+          <Link href="/book"><span>Book</span></Link>
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
@@ -43,7 +44,7 @@ const Header = () => {
       >
         <section className="flex items-center justify-between">
           <span className="font-roboto-condensed text-3xl font-bold uppercase md:text-4xl">
-            Beaches.
+    
           </span>
 
           <AiOutlineClose className="cursor-pointer" onClick={handleMobileMenu} size={20} />
@@ -57,10 +58,10 @@ const Header = () => {
           <span className="border-b border-b-slate-500 p-2">Book</span>
         </nav>
 
-        <section className="flex flex-col gap-4">
-          <button>Search</button>
-          <button>Account</button>
-        </section>
+<section className="flex flex-col gap-4">
+  <button>Search</button>
+  <button>Account</button>
+</section>
 
         <section className="flex items-center justify-center gap-6">
           <FaFacebook className="icon" />

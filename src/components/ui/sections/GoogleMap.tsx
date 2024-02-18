@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 
-export default function GoogleMaps() {
+export default function GoogleMap() {
   const mapRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {

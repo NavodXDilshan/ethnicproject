@@ -7,16 +7,19 @@ const CarouselSection = () => {
 
   const SLIDER_DATA = [
     {
-      url: '/assets/media/images/borabora.jpg',
+      url: '/assets/media/images/resort1.jpg',
     },
     {
-      url: '/assets/media/images/borabora2.jpg',
+      url: '/assets/media/images/resort2.jpg',
     },
     {
-      url: '/assets/media/images/maldives.jpg',
+      url: '/assets/media/images/resort3.webp',
     },
     {
-      url: '/assets/media/images/keywest.jpg',
+      url: '/assets/media/images/resort4.webp',
+    },
+    {
+      url: '/assets/media/images/resort5.jpg',
     },
   ];
 

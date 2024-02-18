@@ -4,7 +4,7 @@ const DestinationsSection = () => (
   <section className="px-4 py-8 md:px-0 md:py-16">
     <div className="container mx-auto text-center">
       <h2>All-Inclusive Resorts</h2>
-      <p>On the Caribbean&apos;s Best Beaches</p>
+      <p>At Sri Lanka&apos;s Most Sought Out Places!</p>
 
       <div className="grid grid-rows-none gap-2 pt-8 md:grid-cols-4 md:gap-4 lg:grid-cols-5">
         <Image

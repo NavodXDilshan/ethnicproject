@@ -8,13 +8,13 @@ import { HeroSection } from 'components/ui/sections/Hero';
 import { RatesSection } from 'components/ui/sections/Rates';
 import { SelectionSection } from 'components/ui/sections/Selection';
 
-const Home: NextPage = () => {
+const home: NextPage = () => {
   return (
     <>
       <Header />
       <HeroSection />
       <DestinationsSection />
-      <RatesSection />
+     
       <SelectionSection />
       <CarouselSection />
       <Footer />
@@ -22,4 +22,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default home;

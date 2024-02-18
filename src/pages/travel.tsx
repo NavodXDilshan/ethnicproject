@@ -7,17 +7,19 @@ import { DestinationsSection } from 'components/ui/sections/Destination';
 import { HeroSection } from 'components/ui/sections/Hero';
 import { RatesSection } from 'components/ui/sections/Rates';
 import { SelectionSection } from 'components/ui/sections/Selection';
-import GoogleMaps from 'components/ui/sections/GoogleMaps';
+
+import GoogleMap from 'components/ui/sections/GoogleMap';
 
 const Travel: NextPage = () => {
+  
   return (
+
     <>
       <Header />
       <HeroSection />
-      <GoogleMaps />
-
-
+      <GoogleMap />
     </>
+    
   );
 };
 
