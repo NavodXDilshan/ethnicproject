@@ -21,6 +21,7 @@ const Header = () => {
         <script src="https://mediafiles.botpress.cloud/3c6f068d-a1fe-4358-b107-4990ee37b40c/webchat/config.js" defer></script>    
 
         <nav className="hidden items-center gap-3 md:flex md:gap-6">
+          
           <Link href="home"><span>Home</span></Link>
           <Link href="travel"><span>Travel</span></Link>
           <Link href="book"><span>Book</span></Link>

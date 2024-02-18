@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 
 export default function GoogleMaps() {
@@ -12,8 +12,6 @@ export default function GoogleMaps() {
         apiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY as string,
         version: 'quartely',
       });
-
-      
 
       const { Map } = await loader.importLibrary('maps');
 
@@ -48,5 +46,5 @@ export default function GoogleMaps() {
     initializeMap();
   }, []);
 
-  return <div className="h-[830px]" ref={mapRef} />;
+  return <div className="h-[700px]" ref={mapRef} />;
 }

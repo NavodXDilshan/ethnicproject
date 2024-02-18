@@ -9,7 +9,7 @@ import { RatesSection } from 'components/ui/sections/Rates';
 import { SelectionSection } from 'components/ui/sections/Selection';
 import GoogleMaps from 'components/ui/sections/GoogleMaps';
 
-const Home: NextPage = () => {
+const Travel: NextPage = () => {
   return (
     <>
       <Header />
@@ -21,4 +21,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Travel;

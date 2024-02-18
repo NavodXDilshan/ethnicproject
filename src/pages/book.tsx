@@ -13,10 +13,7 @@ const Home: NextPage = () => {
     <>
       <Header />
       <HeroSection />
-      <DestinationsSection />
-      <RatesSection />
-      <SelectionSection />
-      <CarouselSection />
+
       <Footer />
     </>
   );
