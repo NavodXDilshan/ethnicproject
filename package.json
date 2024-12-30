@@ -36,8 +36,6 @@
     "use-places-autocomplete": "^4.0.1"
   },
   "devDependencies": {
-    "@tutods/eslint-config": "^1.4.0",
-    "@tutods/prettier-config": "^0.2.0",
     "@types/node": "^20.4.5",
     "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
