@@ -1,7 +1,9 @@
 import { Head, Html, Main, NextScript } from 'next/document';
+import { ClerkProvider } from '@clerk/nextjs'
 
 const Document = () => {
   return (
+  
     <Html>
       <Head />
       <body className="">
@@ -9,6 +11,7 @@ const Document = () => {
         <NextScript />
       </body>
     </Html>
+
   );
 };
 

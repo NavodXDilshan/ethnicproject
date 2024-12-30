@@ -15,15 +15,15 @@ const HeroSection = () => (
 
     <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2">
       <div className="container mx-auto flex flex-col items-center justify-center gap-4 p-4 text-center text-white">
-        <h1>First Class Travel</h1>
-        <h2 className="font-light">Top locations for you to visit!</h2>
+        <h1>Aqua Shield</h1>
+        <h2 className="font-light">Bridging Extremes - Creating Balance</h2>
 
         <form className="mx-auto flex w-full max-w-[700px] items-center justify-between gap-4 rounded-md border bg-gray-100/90 px-2 py-1 text-black xs:flex-wrap">
           <input
             className="flex-1 border-0 bg-transparent shadow-none focus:outline-none"
             id="search"
             name="search"
-            placeholder="Search Destinations"
+            placeholder="Search"
             type="text"
           />
           <button className="grow-0 text-center xs:grow">

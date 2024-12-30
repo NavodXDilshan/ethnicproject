@@ -14,8 +14,8 @@ const HeroSection = () => (
 
     <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2">
       <div className="container mx-auto flex flex-col items-center justify-center gap-4 p-4 text-center text-white">
-        <h1>Book anything from here!</h1>
-        <h2 className="font-light">All At One Place</h2>
+        <h1>Aqua Shield</h1>
+        <h2 className="font-light">Bridging Extremes - Creating Balance</h2>
 
        
       </div>

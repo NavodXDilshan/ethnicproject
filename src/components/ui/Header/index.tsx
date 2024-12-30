@@ -7,6 +7,7 @@ import { HiOutlineMenuAlt4 } from 'react-icons/hi';
 import Link from 'next/link';
 
 
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -17,17 +18,19 @@ const Header = () => {
   
     <header className="absolute top-0 z-10 flex h-20 w-full items-center justify-center px-4 text-white lg:px-0">
       <section className="container mx-auto flex items-center justify-between gap-4">
-        <span className="font-roboto-condensed text-3xl font-bold uppercase md:text-4xl">
-          VISIT SL.
+        <span className="font-roboto-condensed text-1xl md:text-2xl">
+          Together We Thrive
         </span>
         <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
         <script src="https://mediafiles.botpress.cloud/3c6f068d-a1fe-4358-b107-4990ee37b40c/webchat/config.js" defer></script>  
-
+      
 
         <nav className="hidden items-center gap-15 md:flex md:gap-8">
           <Link href="/" key="home"><span>Home</span></Link>
-          <Link href="/travel" key="travel"><span>Travel</span></Link>
-          <Link href="/book" key="book"><span>Book</span></Link>
+          <Link href="/services" key="travel"><span>Services</span></Link>
+          <Link href="/travel" key="travel"><span>Supports</span></Link>
+          <Link href="/book" key="book"><span>About Us</span></Link>
+          <Link href="/donate" key="book"><span>Donate</span></Link>
         </nav>
       
    

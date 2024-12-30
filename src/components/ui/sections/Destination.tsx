@@ -3,8 +3,8 @@ import Image from 'next/image';
 const DestinationsSection = () => (
   <section className="px-4 py-8 md:px-0 md:py-16">
     <div className="container mx-auto text-center">
-      <h2>All-Inclusive Resorts</h2>
-      <p>At Sri Lanka&apos;s Most Sought Out Places!</p>
+      <h2>Be a force for a better world!</h2>
+      <p>Together we can do it all</p>
 
       <div className="grid grid-rows-none gap-2 pt-8 md:grid-cols-4 md:gap-4 lg:grid-cols-5">
         <Image
@@ -18,14 +18,14 @@ const DestinationsSection = () => (
           alt="Mountain Range"
           className="h-full w-full rounded object-cover shadow shadow-black/20"
           height={1000}
-          src="/assets/media/images/2.png"
+          src="/assets/media/images/2.jpg"
           width={1000}
         />
         <Image
           alt="Elephants"
           className="h-full w-full rounded object-cover shadow shadow-black/20"
           height={1000}
-          src="/assets/media/images/3.webp"
+          src="/assets/media/images/3.jpg"
           width={1000}
         />
         <Image
