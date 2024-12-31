@@ -55,7 +55,9 @@ const Header = () => {
         <nav className="flex flex-col gap-4 text-xl">
         <Link href="/" key="home"><span className="border-b border-b-slate-500 p-2">Home</span></Link>
         <Link href="/travel" key="travel"><span className="border-b border-b-slate-500 p-2">Travel</span></Link>
+        <Link href="/services" key="book"><span className="border-b border-b-slate-500 p-2">Services</span></Link>
         <Link href="/book" key="book"><span className="border-b border-b-slate-500 p-2">Book</span></Link>
+        <Link href="/donate" key="book"><span className="border-b border-b-slate-500 p-2">Donate</span></Link>
         </nav>
 
         <section className="flex items-center justify-center gap-6">
