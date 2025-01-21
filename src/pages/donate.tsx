@@ -6,6 +6,7 @@ import GoogleMap from 'components/ui/sections/GoogleMap';
 import { ServiceSelectionSection } from 'components/ui/sections/ServiceSelection';
 import { RatesSection } from 'components/ui/sections/Rates';
 import FormSection from 'components/ui/sections/Form';
+import Forms from 'components/ui/sections/Forms';
 
 const Donate: NextPage = () => {
   return (
@@ -13,7 +14,7 @@ const Donate: NextPage = () => {
       <Header />
       <HeroSection />
       <ServiceSelectionSection />
-      <FormSection />
+      <Forms />
       
     </>
   );
