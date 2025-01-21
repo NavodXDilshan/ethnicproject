@@ -14,7 +14,6 @@ const index: NextPage = () => {
       <Header />
       <HeroSection />
       <DestinationsSection />
-
       <Footer />
     </>
   );
