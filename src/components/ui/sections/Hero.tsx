@@ -18,7 +18,7 @@ const HeroSection = () => (
         <h1>Aqua Shield</h1>
         <h2 className="font-light">Bridging Extremes - Creating Balance</h2>
 
-        <form className="mx-auto flex w-full max-w-[700px] items-center justify-between gap-4 rounded-md border bg-gray-100/90 px-2 py-1 text-black xs:flex-wrap">
+        {/* <form className="mx-auto flex w-full max-w-[700px] items-center justify-between gap-4 rounded-md border bg-gray-100/90 px-2 py-1 text-black xs:flex-wrap">
           <input
             className="flex-1 border-0 bg-transparent shadow-none focus:outline-none"
             id="search"
@@ -29,7 +29,7 @@ const HeroSection = () => (
           <button className="grow-0 text-center xs:grow">
             <AiOutlineSearch className="icon !text-white xs:mx-auto" size={20} />
           </button>
-        </form>
+        </form> */}
       </div>
     </div>
   </section>
