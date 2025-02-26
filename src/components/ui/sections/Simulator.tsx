@@ -86,96 +86,132 @@ const SimulatorSection = () => {
 
   return (
     <div className="form-section">
-      <h2 style={{ textAlign: "center" }}>Test your defenses!</h2>
-      <br />
-      <form onSubmit={handleSubmit}>
-        <div className="name-fields">
-          {["height", "length", "width"].map((field) => (
-            <div key={field} className="field-group">
-              <label htmlFor={field}>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
-              <input
-                type="number"
-                id={field}
-                name={field}
-                value={formData[field as keyof typeof formData]}
-                onChange={handleChange}
-                placeholder="in Meters"
-                required
-                step="0.01"
-              />
-            </div>
-          ))}
-        </div>
-        <div>
-          <label htmlFor="water">Water level:</label>
-          <input
-            type="number"
-            id="water"
-            name="water"
-            value={formData.water}
-            onChange={handleChange}
-            placeholder="Height of the water level in meters"
-            required
-            step="0.01"
-          />
-        </div>
-        <div>
-          <label htmlFor="velocity">Velocity:</label>
-          <input
-            type="number"
-            id="velocity"
-            name="velocity"
-            value={formData.velocity}
-            onChange={handleChange}
-            placeholder="Velocity of water in meters per second"
-            required
-            step="0.01"
-          />
-        </div>
-        <div>
-          <label htmlFor="materialType">Material Type:</label>
-          <select
-            id="materialType"
-            name="materialType"
-            value={formData.materialType}
-            onChange={handleChange}
-            required
-          >
-            <option value="" disabled>
-              Select the material type
-            </option>
-            {Object.keys(materialProperties).map((mat) => (
-              <option key={mat} value={mat}>
-                {mat.charAt(0).toUpperCase() + mat.slice(1)}
-              </option>
+      <div className="description">
+        <h2>Flood Shelter Force Simulator</h2>
+        <p>
+          Use this tool to assess the ability of your shelter to withstand flooding forces.
+          By entering the dimensions, water level, velocity, and material type, this simulator calculates the hydrostatic and drag forces
+          acting on your shelter. It then determines whether the material strength of your shelter can withstand these forces.
+        </p>
+        <p>Test various conditions and ensure your shelter's durability!</p>
+      </div>
+
+      <div className="form-container">
+        <h3 style={{ textAlign: "center" }}>Test your defenses!</h3>
+        <form onSubmit={handleSubmit}>
+          <div className="name-fields">
+            {["height", "length", "width"].map((field) => (
+              <div key={field} className="field-group">
+                <label htmlFor={field}>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
+                <input
+                  type="number"
+                  id={field}
+                  name={field}
+                  value={formData[field as keyof typeof formData]}
+                  onChange={handleChange}
+                  placeholder="in Meters"
+                  required
+                  step="0.01"
+                />
+              </div>
             ))}
-          </select>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-      {result && (
-        <div className="result">
-          <p>{result}</p>
-        </div>
-      )}
+          </div>
+          <div>
+            <label htmlFor="water">Water level:</label>
+            <input
+              type="number"
+              id="water"
+              name="water"
+              value={formData.water}
+              onChange={handleChange}
+              placeholder="Height of the water level in meters"
+              required
+              step="0.01"
+            />
+          </div>
+          <div>
+            <label htmlFor="velocity">Velocity:</label>
+            <input
+              type="number"
+              id="velocity"
+              name="velocity"
+              value={formData.velocity}
+              onChange={handleChange}
+              placeholder="Velocity of water in meters per second"
+              required
+              step="0.01"
+            />
+          </div>
+          <div>
+            <label htmlFor="materialType">Material Type:</label>
+            <select
+              id="materialType"
+              name="materialType"
+              value={formData.materialType}
+              onChange={handleChange}
+              required
+            >
+              <option value="" disabled>
+                Select the material type
+              </option>
+              {Object.keys(materialProperties).map((mat) => (
+                <option key={mat} value={mat}>
+                  {mat.charAt(0).toUpperCase() + mat.slice(1)}
+                </option>
+              ))}
+            </select>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+        {result && (
+          <div className="result">
+            <p>{result}</p>
+          </div>
+        )}
+      </div>
+
       <style jsx>{`
         .form-section {
+          display: flex;
+          justify-content: space-between;
+          gap: 30px;
           padding: 30px;
           margin: 20px auto;
           background-color: #f9f9f9;
           border: 1px solid #ddd;
           border-radius: 8px;
-          max-width: 500px;
+          max-width: 900px;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
+        .description {
+          width: 40%;
+        }
+
+        .form-container {
+          width: 55%;
+        }
+
+        h2 {
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+
+        p {
+          font-size: 16px;
+          line-height: 1.5;
+        }
+
         form div {
           margin-bottom: 15px;
         }
+
         label {
           display: block;
           font-weight: bold;
           margin-bottom: 5px;
         }
+
         input,
         select {
           width: 100%;
@@ -183,13 +219,16 @@ const SimulatorSection = () => {
           border: 1px solid #ccc;
           border-radius: 4px;
         }
+
         .name-fields {
           display: flex;
           gap: 10px;
         }
+
         .field-group {
           flex: 1;
         }
+
         button {
           background-color: #0070f3;
           color: white;
@@ -199,9 +238,11 @@ const SimulatorSection = () => {
           cursor: pointer;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         button:hover {
           background-color: #005bb5;
         }
+
         .result {
           background-color: #f0f8ff;
           padding: 10px;
