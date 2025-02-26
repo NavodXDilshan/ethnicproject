@@ -1,19 +1,60 @@
 import { AiOutlineSearch } from 'react-icons/ai';
+import { openPopup, openPopupForm } from '../../utils/popupFunctions';
+import { useEffect, useState } from 'react';
+import EvacuationListPopup from '../sections/EvacuationListPopup';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 const EvacuationSection = () => {
-    // Evacuation points around Colombo
-    const evacuationPoints = [
-        { lat: 6.933504, lng: 79.850529 }, // Colombo Fort
-        { lat: 6.887078, lng: 79.861243 }, // Bambalapitiya
-        { lat: 6.872281, lng: 79.860611 }, // Wellawatte
-        { lat: 6.918387, lng: 79.901744 }, // Rajagiriya
-        { lat: 6.868993, lng: 79.899685 }, // Nugegoda
-    ];
 
-    // Generate query string for evacuation points
-    const evacuationMarkers = evacuationPoints
-        .map(point => `${point.lat},${point.lng}`)
-        .join('|');
+    const [nearestPoint, setNearestPoint] = useState(null);
+    const [showPopup, setShowPopup] = useState(false);
+    const [userLocation, setUserLocation] = useState({ lat: 0, lng: 0 });
+    const [loadingAllCenters, setLoadingAllCenters] = useState(false);
+const [loadingAddCenter, setLoadingAddCenter] = useState(false);
+const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                const { latitude, longitude } = position.coords;
+                setUserLocation({ lat: latitude, lng: longitude });
+            });
+        } else {
+            alert('Geolocation is not supported by this browser.');
+        }
+    }, []);
+
+    const findNearestEvacuationPoint = () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const { latitude, longitude } = position.coords;
+                    fetch('http://localhost:4000/nearest-evacuation', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ userLat: latitude, userLng: longitude }),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.latitude && data.longitude) {
+                                setNearestPoint(data);
+                                window.open(
+                                    `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${data.latitude},${data.longitude}&travelmode=driving`,
+                                    '_blank'
+                                );
+                            } else {
+                                alert('No evacuation points found');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error finding nearest evacuation point:', error);
+                        });
+                });
+            } else {
+                alert('Geolocation is not supported by this browser.');
+            }
+        };
 
     return (
         <section className="relative h-screen w-full">
@@ -53,12 +94,7 @@ const EvacuationSection = () => {
                         {/* Nearest Evacuation Point Button */}
                         <button
                             className="flex flex-col items-center justify-center gap-3 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 p-6 text-white shadow-lg hover:from-blue-600 hover:to-indigo-700 hover:shadow-xl transition-transform duration-300 ease-in-out"
-                            onClick={() =>
-                                window.open(
-                                    `https://www.google.com/maps/dir/?api=1&origin=current+location&destination=6.927079,79.861244&travelmode=driving`,
-                                    '_blank'
-                                )
-                            }
+                            onClick={findNearestEvacuationPoint}
                         >
                             <img
                                 src="/assets/media/images/location.png"
@@ -66,46 +102,77 @@ const EvacuationSection = () => {
                                 className="h-16 w-16"
                             />
                             <span className="text-lg font-semibold">Nearest Evacuation Point</span>
+                            <span className="text-sm">ආසන්නතම ඉවත් කිරීමේ ස්ථානය</span>
+                            <span className="text-sm">அருகிலுள்ள வெளியேற்றும் இடம்</span>
                         </button>
 
                         {/* All Evacuation Centers Button */}
-                        <button
-                            className="flex flex-col items-center justify-center gap-3 rounded-lg bg-gradient-to-br from-teal-400 to-cyan-500 p-6 text-white shadow-lg hover:from-teal-500 hover:to-cyan-600 hover:shadow-xl transition-transform duration-300 ease-in-out"
-                            onClick={() =>
-                                window.open(
-                                    `https://www.google.com/maps/search/?api=1&query=${evacuationMarkers}`,
-                                    '_blank'
-                                )
-                            }
-                        >
-                            <img
-                                src="/assets/media/images/evacuation.png"
-                                alt="All Evacuation Centers"
-                                className="h-16 w-16"
-                            />
-                            <span className="text-lg font-semibold">All Evacuation Centers</span>
-                        </button>
+<button
+    className="flex flex-col items-center justify-center gap-3 rounded-lg bg-gradient-to-br from-teal-400 to-cyan-500 p-6 text-white shadow-lg hover:from-teal-500 hover:to-cyan-600 hover:shadow-xl transition-transform duration-300 ease-in-out"
+    onClick={() => {
+        setIsLoading(true);
+        setLoadingAllCenters(true);
+        setTimeout(() => {
+            setShowPopup(true);
+            setLoadingAllCenters(false);
+            setIsLoading(false);
+        }, 1000);
+    }}
+>
+    {loadingAllCenters ? (
+        <AiOutlineLoading3Quarters className="h-16 w-16 animate-spin" />
+    ) : (
+        <img
+            src="/assets/media/images/evacuation.png"
+            alt="All Evacuation Centers"
+            className="h-16 w-16"
+        />
+    )}
+    <span className="text-lg font-semibold">All Evacuation Centers</span>
+    <span className="text-sm">සියලුම ඉවත් කිරීමේ මධ්‍යස්ථාන</span>
+                            <span className="text-sm">அனைத்து வெளியேற்றும் மையங்கள்</span>
+</button>
 
-                        {/* Add Evacuation Centers Button */}
-                        <button
-                            className="flex flex-col items-center justify-center gap-3 rounded-lg bg-gradient-to-br from-purple-400 to-blue-500 p-6 text-white shadow-lg hover:from-purple-500 hover:to-blue-600 hover:shadow-xl transition-transform duration-300 ease-in-out"
-                            onClick={() =>
-                                window.open(
-                                    'https://www.google.com/maps/search/add+evacuation+center',
-                                    '_blank'
-                                )
-                            }
-                        >
-                            <img
-                                src="/assets/media/images/add-pointer.png"
-                                alt="Add Evacuation Centers"
-                                className="h-16 w-16"
-                            />
-                            <span className="text-lg font-semibold">Add Evacuation Centers</span>
-                        </button>
+{/* Add Evacuation Centers Button */}
+<button
+    className="flex flex-col items-center justify-center gap-3 rounded-lg bg-gradient-to-br from-purple-400 to-blue-500 p-6 text-white shadow-lg hover:from-purple-500 hover:to-blue-600 hover:shadow-xl transition-transform duration-300 ease-in-out"
+    onClick={() => {
+        setIsLoading(true);
+        setLoadingAddCenter(true);
+        setTimeout(() => {
+            openPopupForm();
+            setLoadingAddCenter(false);
+            setIsLoading(false);
+        }, 1000);
+    }}
+>
+    {loadingAddCenter ? (
+        <AiOutlineLoading3Quarters className="h-16 w-16 animate-spin" />
+    ) : (
+        <img
+            src="/assets/media/images/add-pointer.png"
+            alt="Add Evacuation Centers"
+            className="h-16 w-16"
+        />
+    )}
+    <span className="text-lg font-semibold">Add Evacuation Centers</span>
+    <span className="text-sm">ඉවත් කිරීමේ මධ්යස්ථාන එකතු කරන්න</span>
+                            <span className="text-sm">வெளியேற்றும் மையங்களைச் சேர்க்கவும்</span>
+</button>
                     </div>
                 </div>
             </div>
+            {showPopup && (
+                <EvacuationListPopup
+                    userLat={userLocation.lat}
+                    userLng={userLocation.lng}
+                    onClose={() => setShowPopup(false)}                />
+            )}
+            {isLoading && (
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-50">
+        <AiOutlineLoading3Quarters className="h-16 w-16 animate-spin text-white" />
+    </div>
+)}
         </section>
     );
 };

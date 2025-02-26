@@ -6,13 +6,13 @@ import { CarouselSection } from 'components/ui/sections/Carousel';
 import { DestinationsSection } from 'components/ui/sections/Destination';
 import { HeroSection } from 'components/ui/sections/Hero1';
 import { SelectionSection } from 'components/ui/sections/Selection';
-import { ClerkProvider } from '@clerk/nextjs'
+//import { ClerkProvider } from '@clerk/nextjs'
 
 
 const index: NextPage = () => {
   return (
     
-    <ClerkProvider>
+    //<ClerkProvider>
     <>
       <Header />
       <HeroSection />
@@ -20,7 +20,7 @@ const index: NextPage = () => {
 
       <Footer />
     </>
-    </ClerkProvider>
+    //</ClerkProvider>
   );
 };
 
