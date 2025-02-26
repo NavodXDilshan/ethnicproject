@@ -21,8 +21,9 @@ const Header = () => {
         <span className="font-roboto-condensed text-1xl md:text-2xl">
           Together We Thrive
         </span>
-        <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-        <script src="https://mediafiles.botpress.cloud/3c6f068d-a1fe-4358-b107-4990ee37b40c/webchat/config.js" defer></script>  
+        <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+        <script src="https://files.bpcontent.cloud/2025/02/26/09/20250226093105-NQR7Y58Y.js"></script>
+     
       
 
         <nav className="hidden items-center gap-15 md:flex md:gap-8">

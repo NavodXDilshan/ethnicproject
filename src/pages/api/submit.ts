@@ -5,6 +5,7 @@ type SheetForm = {
     name: string;
     email: string;
     phone: string;
+    address: string;
     message: string;
     role: string; // Added role field
 };
@@ -44,7 +45,7 @@ export default async function handler(
             valueInputOption: 'USER_ENTERED',
             requestBody: {
                 values: [
-                    [body.name, body.email, body.phone, body.message, body.role], // Include role in the request
+                    [body.name, body.email, body.phone,body.address, body.message, body.role], // Include role in the request
                 ],
             },
         });

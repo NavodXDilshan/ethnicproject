@@ -25,7 +25,7 @@ const ServiceSelectionSection = () => {
           </div>
         </div>
         {/* Predictions Image */}
-        <div
+        {/* <div
           aria-label="Predictions"
           onClick={() => navigateTo("/predictions")}
           className='relative cursor-pointer bg-image-zoom min-h-[400px] bg-[url("/assets/media/images/predict.png")] rounded-lg shadow-lg p-4 hover:shadow-xl transition-shadow'
@@ -36,7 +36,7 @@ const ServiceSelectionSection = () => {
               <BiMapPin /> How's weather like
             </span>
           </div>
-        </div>
+        </div> */}
         {/* Models Image */}
         <div
           aria-label="Models"

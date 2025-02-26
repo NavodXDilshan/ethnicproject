@@ -5,6 +5,7 @@ export type SheetForm = {
     name: string
     email: string
     phone: string
+    address: string
     message: string
 }
 
@@ -32,7 +33,7 @@ export async function submitToGoogleSheets(values: SheetForm) {
         valueInputOption: 'FORM_SUBMITTED',
         requestBody: {
             values: [
-                [values.name, values.email, values.phone, values.message]
+                [values.name, values.email, values.phone,values.address, values.message]
             ]
         }
     });

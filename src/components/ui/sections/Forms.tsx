@@ -6,12 +6,13 @@ const Forms: NextPage = () => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [message, setMessage] = useState('');
-    const [role, setRole] = useState(''); // Added role state
+    const [role, setRole] = useState(''); 
+    const [address, setAddress] = useState(''); 
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const form = { name, email, phone, message, role }; // Include role in the form
+        const form = { name, email, phone, message, address, role }; // Include role in the form
 
         try {
             const rawResponse = await fetch('/api/submit', {
@@ -35,6 +36,7 @@ const Forms: NextPage = () => {
             setName('');
             setEmail('');
             setPhone('');
+            setAddress('');
             setMessage('');
             setRole(''); // Reset role field
         } catch (error) {
@@ -89,6 +91,19 @@ const Forms: NextPage = () => {
                                 id="phone"
                                 className="mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                                 placeholder="Your Phone"
+                            />
+                        </div>
+
+                        {/* Address Input */}
+                        <div className="flex flex-col">
+                            <label htmlFor="phone" className="text-sm font-medium text-gray-700">Address</label>
+                            <input
+                                value={address}
+                                onChange={e => setAddress(e.target.value)}
+                                name="address"
+                                id="address"
+                                className="mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                placeholder="Your Address"
                             />
                         </div>
 

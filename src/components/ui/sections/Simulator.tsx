@@ -10,17 +10,78 @@ const SimulatorSection = () => {
     materialType: "",
   });
 
+  const [result, setResult] = useState<string | null>(null);
+
+  // Material properties (strength in MPa, drag coefficient)
+  const materialProperties: Record<string, { strength: number; dragCoefficient: number }> = {
+    wood: { strength: 5, dragCoefficient: 1.8 },
+    clay: { strength: 2, dragCoefficient: 1.5 },
+    stone: { strength: 20, dragCoefficient: 1.6 },
+    concrete: { strength: 30, dragCoefficient: 1.5 },
+  };
+
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
-    // Add your form submission logic here
+
+    // Parse form data
+    const height = parseFloat(formData.height);
+    const length = parseFloat(formData.length);
+    const width = parseFloat(formData.width);
+    const waterLevel = parseFloat(formData.water);
+    const velocity = parseFloat(formData.velocity);
+    const material = formData.materialType;
+
+    // Validate numeric fields
+    if (
+      isNaN(height) || isNaN(length) || isNaN(width) || 
+      isNaN(waterLevel) || isNaN(velocity) || !material
+    ) {
+      setResult("Please fill in all fields with valid numbers.");
+      return;
+    }
+
+    // Validate material exists
+    if (!(material in materialProperties)) {
+      setResult("Invalid material selected.");
+      return;
+    }
+
+    // Constants
+    const rho = 1000; // Density of water (kg/m³)
+    const g = 9.81; // Gravity (m/s²)
+    const safetyFactor = 1.5;
+
+    // Calculate hydrostatic pressure and force
+    const hydrostaticPressure = rho * g * waterLevel; // Pa
+    const exposedArea = height * width; // m²
+    const hydrostaticForce = hydrostaticPressure * exposedArea; // N
+
+    // Calculate hydrodynamic (drag) force
+    const { strength, dragCoefficient } = materialProperties[material];
+    const dragForce = 0.5 * rho * velocity ** 2 * dragCoefficient * exposedArea; // N
+
+    // Total force on the structure
+    const totalForce = hydrostaticForce + dragForce; // N
+    const forcePressure = totalForce / exposedArea; // Pa
+    const materialStrength = strength * 1e6; // Convert MPa to Pa
+    const safePressure = materialStrength / safetyFactor;
+
+    // Check if the structure can withstand the pressure
+    const canWithstand = forcePressure <= safePressure;
+
+    // Display result
+    setResult(
+      canWithstand
+        ? `The shelter can withstand the flood. Total force: ${totalForce.toFixed(2)} N.`
+        : `The shelter may fail under these conditions. Total force: ${totalForce.toFixed(2)} N exceeds material capacity.`
+    );
   };
 
   return (
@@ -29,42 +90,21 @@ const SimulatorSection = () => {
       <br />
       <form onSubmit={handleSubmit}>
         <div className="name-fields">
-          <div className="field-group">
-            <label htmlFor="height">Height:</label>
-            <input
-              type="number"
-              id="height"
-              name="height"
-              value={formData.height}
-              onChange={handleChange}
-              placeholder="in Meters"
-              required
-            />
-          </div>
-          <div className="field-group">
-            <label htmlFor="length">Length:</label>
-            <input
-              type="number"
-              id="length"
-              name="length"
-              value={formData.length}
-              onChange={handleChange}
-              placeholder="in Meters"
-              required
-            />
-          </div>
-          <div className="field-group">
-            <label htmlFor="width">Width:</label>
-            <input
-              type="number"
-              id="width"
-              name="width"
-              value={formData.width}
-              onChange={handleChange}
-              placeholder="in Meters"
-              required
-            />
-          </div>
+          {["height", "length", "width"].map((field) => (
+            <div key={field} className="field-group">
+              <label htmlFor={field}>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
+              <input
+                type="number"
+                id={field}
+                name={field}
+                value={formData[field as keyof typeof formData]}
+                onChange={handleChange}
+                placeholder="in Meters"
+                required
+                step="0.01"
+              />
+            </div>
+          ))}
         </div>
         <div>
           <label htmlFor="water">Water level:</label>
@@ -76,6 +116,7 @@ const SimulatorSection = () => {
             onChange={handleChange}
             placeholder="Height of the water level in meters"
             required
+            step="0.01"
           />
         </div>
         <div>
@@ -86,8 +127,9 @@ const SimulatorSection = () => {
             name="velocity"
             value={formData.velocity}
             onChange={handleChange}
-            placeholder="Velocity of water in meters per seconds"
+            placeholder="Velocity of water in meters per second"
             required
+            step="0.01"
           />
         </div>
         <div>
@@ -102,23 +144,29 @@ const SimulatorSection = () => {
             <option value="" disabled>
               Select the material type
             </option>
-            <option value="wood">Wood</option>
-            <option value="clay">Clay</option>
-            <option value="stone">Stone</option>
-            <option value="concrete">Concrete</option>
+            {Object.keys(materialProperties).map((mat) => (
+              <option key={mat} value={mat}>
+                {mat.charAt(0).toUpperCase() + mat.slice(1)}
+              </option>
+            ))}
           </select>
         </div>
         <button type="submit">Submit</button>
       </form>
+      {result && (
+        <div className="result">
+          <p>{result}</p>
+        </div>
+      )}
       <style jsx>{`
         .form-section {
-          padding: 30px; /* Added padding */
-          margin: 20px auto; /* Added margin */
+          padding: 30px;
+          margin: 20px auto;
           background-color: #f9f9f9;
           border: 1px solid #ddd;
           border-radius: 8px;
           max-width: 500px;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow */
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         form div {
           margin-bottom: 15px;
@@ -129,10 +177,9 @@ const SimulatorSection = () => {
           margin-bottom: 5px;
         }
         input,
-        textarea,
         select {
           width: 100%;
-          padding: 10px; /* Increased padding */
+          padding: 10px;
           border: 1px solid #ccc;
           border-radius: 4px;
         }
@@ -146,14 +193,20 @@ const SimulatorSection = () => {
         button {
           background-color: #0070f3;
           color: white;
-          padding: 12px 24px; /* Increased padding */
+          padding: 12px 24px;
           border: none;
           border-radius: 4px;
           cursor: pointer;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added button shadow */
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         button:hover {
           background-color: #005bb5;
+        }
+        .result {
+          background-color: #f0f8ff;
+          padding: 10px;
+          border-radius: 4px;
+          margin-top: 20px;
         }
       `}</style>
     </div>
