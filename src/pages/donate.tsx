@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import { Header } from 'components/ui/Header';
 import { HeroSection } from 'components/ui/sections/Hero';
 import Forms from 'components/ui/sections/Forms';
-import DonationsPage from 'components/ui/sections/DonationPage';
+
 
 const Donate: NextPage = () => {
   return (
